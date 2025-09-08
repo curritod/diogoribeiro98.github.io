@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-<html>
-
 <html lang="en">
 
 {% include head.html %}
@@ -13,10 +11,14 @@
             <div class="text-section">
                 <h1>{{page.title}}</h1>
                 <p>{{content}}</p>
+                <a href="{{ site.baseurl }}/pages/research.html" class="button-54">
+                    <div>Find out more about my research</div> 
+                    <img  src="{{ site.baseurl }}/assets/icons/arrow-right.svg" class="arrow">  
+                </a>
             </div>
             <div class="image-section">
                 <img style="max-width: 400px;" src="{{ site.baseurl }}/assets/images/profile_picture.jpg">
-            </div>
+            </div>    
         </div>
     </div>
 </body>
