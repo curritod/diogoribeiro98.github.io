@@ -1,4 +1,6 @@
-- name: About
+#- name: Home
+#  link: /index.html
+- name: About me
   link: /pages/about.html
 #- name: Research
 #  link: /pages/research.html
