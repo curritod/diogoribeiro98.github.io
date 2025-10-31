@@ -1,18 +1,20 @@
 <header class="header">
     
     <div class="logo-container">
-        <a href="{{ site.baseurl }}/">
+        <a class="nav-link" href="{{ site.baseurl }}/">
             <img  src="{{ site.baseurl }}/assets/images/bh_logo.svg" class="logo"></a>
-        <h1 class="site-name"><a href="{{ site.baseurl }}/">
-            Diogo C. Ribeiro
-        </a></h1>
+        <h1 class="site-name">
+            <a class="nav-link" href="{{ site.baseurl }}/">
+                Diogo C. Ribeiro
+            </a>
+        </h1>
     </div>
-
+    
     <nav class="main-navbar">
         <ul class="navbar-links">
             {%include tabs.html %}
         </ul>
-        
+
         <div class="hamburger" onclick="toggleMenu()">
             &#9776;
         </div>
@@ -23,4 +25,7 @@
             </ul>
         </div>
     </nav>
+
+
+    
 </header>

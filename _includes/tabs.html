@@ -1,5 +1,6 @@
 {% for item in site.data.navigation %}
-        <li><a href="{{ site.baseurl }}{{ item.link }}" 
+        <li><a class="nav-link"
+                href="{{ site.baseurl }}{{ item.link }}" 
         {% if page.url == item.link %}
         style="font-weight: 700;"
         {% endif %}>

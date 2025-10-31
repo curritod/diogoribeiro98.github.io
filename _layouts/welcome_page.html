@@ -5,12 +5,16 @@
 <html lang="en">
 
 {% include head.html %}
+{% include fader.html %}
 
 <body>
+    <div id="canvas-container"></div>
+
     <div class="container">
         {%include navbar.html %}
         <div class="welcome_card">
-            <img src="{{ site.baseurl }}/assets/images/bh_logo.svg" alt="" style="padding-bottom: 0px;">
+            <div style="padding-top: 250px;"></div>
+            <!-- <img src="{{ site.baseurl }}/assets/images/bh_logo.svg" alt="" style="padding-bottom: 0px;"> -->
             <h1>{{ site.data.config.name}}</h1>
             <p>{{ site.data.config.description}}</p>
         <div style="padding-top: 10px;">
@@ -20,6 +24,11 @@
         </div>
     </div>
     </div>
+    
+    <script type="module" src="{{ site.baseurl }}/assets/js/orbiting_stars.js"></script>
+
+    <!-- <script type='module' src="../js/orbiting_stars.js"></script> -->
+
 </body>
 
 </html>
