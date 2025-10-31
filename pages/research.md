@@ -1,8 +1,16 @@
 ---
 layout: basic
+title: Research
 ---
 
-# Research
+# The Galactic Center
+
+<figure style="display: flex; flex-direction: column; align-items: center; width: 100%; margin: auto;">
+
+  <img class='gc' src="images/Galactic_Center_RGB_remaster_cut.png" height="50%" style=" border-radius: 50%;" />
+</figure>
+
+
 
 My research interests span a wide range of topics related to black hole physics. 
 
