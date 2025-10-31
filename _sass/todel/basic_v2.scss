@@ -1,15 +1,27 @@
+// /****************** 
+// Helper variables
+// ******************/
+
+// :root {  
+//     --background-light: rgb(255, 255, 255);
+//     --background-dark: rgb(20, 20, 20);
+  
+//     --textcolor-light:  rgb(45,45,45);
+// }
+
 /****************** 
-Basic body styling 
+General properties
 ******************/
 body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    justify-content: center;    /* Centers the content horizontally */
+    justify-content: center;    
     font-family: 'Sen', sans-serif;
-    color: #2d2d2d;
+    color: var(--textcolor-light);
     min-height: 300px;
-    overflow-y: auto;
+    overflow-y: auto;  
+    background-color: var(--background-light);
 }
 
 /****************** 
@@ -18,13 +30,15 @@ Website main frame
 
 /* Setup webpage working space adn make it responsive to smaller screens*/
 .container {
-    width: 80vw;      /* Fixed width for the container */
+    width: 80vw;      
+    height: 100vh;      
     margin-left: auto;
     margin-right: auto;
     padding: 0px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: rgb(255, 255, 255);
+    // background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
     font-size: 20px;
 }
 
@@ -32,8 +46,9 @@ Website main frame
     width: 50vw; 
     margin-left: auto;
     margin-right: auto;
-    padding-top: 100px;
+    padding-top: 20px;
     line-height: 1.6; 
+    
 }
 
 .container .content img
@@ -46,6 +61,7 @@ Website main frame
 /************************* 
 Header and navigation bar
 *************************/
+
 .header{
     display: flex;
     justify-content: space-between; /* Align items horizontally */
@@ -79,6 +95,7 @@ Header and navigation bar
     margin-right: 30px; /* Space between logo and site name */
 }
 
+
 .main-navbar a {
     position: relative;
     margin-left: 40px;
@@ -100,6 +117,7 @@ Header and navigation bar
     transition: 0.3s;
 }
 
+
 .main-navbar a:hover::before {
     width: 100%;
 }
@@ -118,17 +136,23 @@ nav ul a.active {
     display: none;
     font-size: 2em;
     cursor: pointer;
+    z-index:10;
+    position: fixed;
+
 }
 
 /* Hide dropdown by default */
 .dropdown-menu {
     display: none;
-    background-color: #ffffff8e;
-    position: absolute;
-    top: 50px;
-    right: 20px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    height: 100vh;
     width: 100%;
     text-align: center;
+    padding-top: 100px;
+
 }
 
 .dropdown-menu ul {
@@ -149,8 +173,8 @@ nav ul a.active {
 @media (max-width: 1035px) {
     /* Hide normal navigation */
     .logo-container .site-name {
-        //display: none;
-        opacity: 0; /* Fades out the site name */
+        display: none;
+        opacity: 0.5; /* Fades out the site name */
         visibility: hidden; /* Prevents interaction once fully faded */
     }
 
@@ -173,6 +197,7 @@ nav ul a.active {
     }
 }
 
+
 /************************* 
 Welcome page
 *************************/
@@ -185,13 +210,21 @@ Welcome page
 
 
     padding: 20px;             /* Padding inside the container */
-    background-color: #ffffff; /* Background color for the centered div */
-    color: rgb(0, 0, 0);
+    background-color: #ffffff00; /* Background color for the centered div */
+    color: var(--textcolor-light);
     height: 70vh;
     max-width: 100%;           /* Ensure it doesn't overflow horizontally */
     max-height: 100%;          /* Ensure it doesn't overflow vertically */
     box-sizing: border-box;    /* Include padding in the element's width/height */
     text-align: center;        /* Center text content */
+
+}
+
+.welcome_card {
+  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Chrome, Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
 }
 
 .welcome_card h1{
@@ -237,6 +270,23 @@ Welcome page
     text-decoration: none;
 }
 
+#canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+
+/* Rest of your content stays normal */
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: transparent; /* allow canvas to show */
+}
 
 /************************ 
 Fade effect between pages
@@ -276,6 +326,7 @@ Fade effect between pages
     animation-name: fade-in;
 }
 
+
 /************************ 
 About template
 *************************/
@@ -286,7 +337,7 @@ About template
     flex-direction: row; /* Arrange items horizontally */
     align-items: center;
     max-width: 1210px;
-    background-color: #ffffff;
+    background-color: #ffffff00;
     margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -380,3 +431,182 @@ About template
     margin-left: 10px;
     height: 22px;
 }
+
+
+// Drop down menu
+
+input {
+  display: none;
+}
+
+.open {
+  background-color: #3c3c3c;
+  width: 24px;
+  height: 4px;
+  display: block;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  top: 8px;
+}
+
+.open:before {
+  content: "";
+  background-color: #3c3c3c;
+  width: 24px;
+  height: 4px;
+  display: block;
+  border-radius: 2px;
+  position: relative;
+  top: -8px;
+  transform: rotate(0deg);
+  transition: all 0.3s ease;
+}
+
+.open:after {
+  content: "";
+  background-color: #3c3c3c;
+  width: 24px;
+  height: 4px;
+  display: block;
+  border-radius: 2px;
+  position: relative;
+  top: 4px;
+  transform: rotate(0deg);
+  transition: all 0.3s ease;
+}
+
+.menuOpen {
+  width: 24px;
+  height: 20px;
+  display: block;
+  padding: 15px;
+  cursor: pointer;
+  float: right;
+}
+
+.menuOpen:hover .open:before {
+  top: -9px;
+}
+
+.menuOpen:hover .open:after {
+  top: 5px;
+}
+
+.menu {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(255, 135, 2, 0.9);
+}
+
+.menu label {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-size: 100%;
+  cursor: pointer;
+}
+
+.menu .menuContent {
+  position: relative;
+  top: 50%;
+  font-size: 54px;
+  text-align: center;
+  padding-bottom: 20px;
+  margin-top: -170px;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.menu ul li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-family: Trebuchet MS;
+  text-transform: uppercase;
+  padding: 10px 0;
+}
+
+.menu ul li a:hover {
+  color: #ff8702;
+}
+
+.menu ul li:hover {
+  background: white;
+}
+
+.menuEffects {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+.menuEffects ul {
+  transform: translateY(0%);
+  transition: all 0.5s;
+}
+
+#menuToggle:checked ~ .menuEffects {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s;
+}
+
+#menuToggle:checked ~ .menuEffects ul {
+  opacity: 1;
+}
+
+#menuToggle:checked ~ .menuOpen .open {
+  background-color: transparent;
+}
+
+#menuToggle:checked ~ .menuOpen .open:before {
+  content: "";
+  background-color: white;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#menuToggle:checked ~ .menuOpen .open:after {
+  content: "";
+  background-color: white;
+  transform: rotate(-45deg);
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#menuToggle:not(:checked) ~ .menuEffects ul {
+  transform: translateY(-30%);
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+  scrollbar-width: none; /* removes scrollbar but keeps scrolling */
+}
+
+/* Optional: prevent weird background jump */
+html, body {
+  -ms-overflow-style: none; /* for older IE */
+  overflow: auto;
+}
+

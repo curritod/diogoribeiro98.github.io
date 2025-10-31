@@ -1,0 +1,62 @@
+
+.about {
+
+    display: flex;
+    flex-direction: row; /* Arrange items horizontally */
+    align-items: center;
+    max-width: 1210px;
+    background-color: #ffffff00;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about h1{
+    align-self: flex-start;
+    margin-bottom: 0px;
+}
+
+.about p{
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+/* Style for the text section */
+.text-section {
+    flex: 1; /* Allow text section to take available space */
+    margin-right: 100px; /* Space between text and image */
+    text-align:justify;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for the image */
+.image-section img {
+    max-width: 100%; /* Ensure image doesn't exceed container's width */
+    height: auto;
+    border-radius: 8px; /* Optional: for rounded corners */
+    // padding-left: 20px;
+    // padding-right: 20px;
+    justify-content: center;
+}
+
+  /* Responsive design: stack items vertically when screen width is 768px or less */
+  @media (max-width:  1035px) {
+    .about {    
+        margin-top: 10px;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Align items to the left */
+    }
+
+    .image-section img{
+        margin-top: 20px;
+        margin-bottom: 35px;
+    }
+
+    .text-section {
+        margin-right: 0; /* Remove margin when stacked */
+        margin-bottom: 20px; /* Add space below text section */
+        justify-content: center;
+    }
+}

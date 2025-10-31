@@ -1,0 +1,44 @@
+@use 'variables';
+
+// CSS Custom Properties
+:root {  
+  --background-light: #{$background-light};
+  --background-dark: #{$background-dark};
+  --textcolor-light: #{$textcolor-light};
+}
+
+// Base Styles
+* {
+  scrollbar-width: none; // Firefox
+}
+
+::-webkit-scrollbar {
+  display: none; // Chrome, Safari, Edge
+}
+
+html, 
+body {
+  -ms-overflow-style: none; // IE
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  min-height: 300px;
+  font-family: $font-primary;
+  color: var(--textcolor-light);
+  background-color: var(--background-light);
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: center;
+}
+
+// Disable text selection for specific elements
+.welcome_card {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}

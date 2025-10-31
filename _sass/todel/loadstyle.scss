@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+//@use "basic_v2";
+
+
+@use 'base/base';
+// use order matters!
+// 1. Variables first (so other files can use them)
+//@use "variables";
+
+// 2. Base styles and resets
+//@use "base";
+
+// 3. Layout
+//@use "layout";
+
+// 4. Header/Navigation
+//@use "header";
+
+// 5. Page-specific styles
+//@use "pages";
+
+// 6. Components
+//@use "components";
+
+
+// Custom Fonts
+//@import url('https://fonts.googleapis.com/css2?family=Kulim+Park:wght@600;700&family=Sen:wght@400;700;800&display=swap');
+
