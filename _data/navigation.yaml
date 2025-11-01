@@ -2,7 +2,7 @@
   link: /pages/about.html
 - name: Research
   link: /pages/research.html
-- name: Outreach
-  link: /pages/outreach.html
+#- name: Outreach
+#  link: /pages/outreach.html
 # - name: Teaching
 #   link: /pages/teaching.html
