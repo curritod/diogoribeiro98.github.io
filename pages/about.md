@@ -13,7 +13,7 @@ Originally from Lisbon, Portugal, where I completed my Master's degree in Engine
 
 Hi there! I’m Diogo, a Ph.D. student at the  <a href="https://www.mpe.mpg.de/main">Max Plank Institute for Extraterrestrial Physics</a> (MPE), where I work in the Galactic Center group led by Prof. Reinhard Genzel and Prof. Frank Eisenhauer.
 
-My research lies at the intersection of theory and experiment, using the Galactic Center as a natural laboratory to explore the physics of gravity and the environments around supermassive black holes. I’m particularly interested in how precise observations of stellar orbits and accretion phenomena can test the limits of General Relativity and inform our understanding of black hole astrophysics.
+My research lies at the intersection of theory and experiment, using the Galactic Center as a laboratory to explore the physics of gravity and the environments around supermassive black holes. I’m particularly interested in how precise observations of stellar orbits and accretion phenomena can test the limits of General Relativity and inform our understanding of black hole astrophysics.
 
 Originally from Lisbon, Portugal, I earned my Master’s degree in Engineering Physics from the <a href="https://tecnico.ulisboa.pt/en/"> Instituto Superior Técnico</a>, University of Lisbon, where I built a strong foundation in theoretical physics and applied engineering. This dual background continues to shape my approach to research—bridging modeling and data, concept and instrument, theory and observation.
 
