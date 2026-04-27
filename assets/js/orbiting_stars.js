@@ -1,25 +1,28 @@
 import * as THREE from "three";
 import { OrbitControls } from "jsm/controls/OrbitControls.js"
 
+//Load variables
+const bgColor = getComputedStyle(document.getElementById('canvas-container'))
+  .backgroundColor; 
+
+const bhColor = getComputedStyle(document.getElementById('canvas-container'))
+  .getPropertyValue('--bhcolor').trim();
+
 //Setup Renderer
 const w = window.innerWidth;
 const h = window.innerHeight;
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(w,h);
-renderer.setClearColor( 0xffffff, 1 );
-//renderer.setClearColor(0x00000f);
-//document.body.append(renderer.domElement);
+renderer.setClearColor(new THREE.Color(bgColor), 1);
 document.getElementById('canvas-container').appendChild(renderer.domElement);
 
 //Setup camera
-const fov = 75;
+const fov = 60;
 const aspect = w/h;
 const near = 0.01;
 const far = 10000;
 const camera = new THREE.PerspectiveCamera(fov, aspect , near , far );
 camera.position.z = 30;
-
-// camera.position.z = -300;
 
 //Setup scene
 const scene = new THREE.Scene();
@@ -34,7 +37,9 @@ let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 let theta = 0; // Horizontal rotation
 let phi = 0;   // Vertical rotation
-let distance = 14;
+let distance = 20;
+let autoRotate = true;
+const autoRotateSpeed = 0.001;
 
 window.addEventListener( 'resize', onWindowResize );
 
@@ -50,25 +55,23 @@ function onWindowResize() {
 document.addEventListener('mousedown', (e) => {
     // Don't interfere with link clicks
     if (e.target.tagName === 'A') return;
-    
     isDragging = true;
+    autoRotate = false;
     previousMousePosition = { x: e.clientX, y: e.clientY };
 });
 
 document.addEventListener('mousemove', (e) => {
-    if (isDragging) {
-        const deltaX = e.clientX - previousMousePosition.x;
-        const deltaY = e.clientY - previousMousePosition.y;
-        
-        theta -= deltaX * 0.005;
-        phi -= deltaY * 0.005;
-        
-        previousMousePosition = { x: e.clientX, y: e.clientY };
-    }
+    if (!isDragging) return;
+    const deltaX = e.clientX - previousMousePosition.x;
+    const deltaY = e.clientY - previousMousePosition.y;
+    theta -= deltaX * 0.005;
+    phi -= deltaY * 0.005;
+    previousMousePosition = { x: e.clientX, y: e.clientY };
 });
 
 document.addEventListener('mouseup', () => {
     isDragging = false;
+    setTimeout(() => { autoRotate = true; }, 200);
 });
 
 document.addEventListener('wheel', (e) => {
@@ -78,6 +81,7 @@ document.addEventListener('wheel', (e) => {
 }, { passive: false });
 
 function updateCamera() {
+    if (autoRotate) theta += autoRotateSpeed;
     camera.position.x = distance * Math.sin(theta) * Math.cos(phi);
     camera.position.y = distance * Math.sin(phi);
     camera.position.z = distance * Math.cos(theta) * Math.cos(phi);
@@ -91,12 +95,11 @@ const fullHeight = window.innerHeight;
 camera.setViewOffset(
   fullWidth,
   fullHeight,
-  0,   // x offset
-  0.14*fullHeight, // y offset
+  0,                // x offset
+  0.1*fullHeight,   // y offset
   fullWidth,
   fullHeight
 );
-
 
 //------------------------------------
 // Setup objects and scene
@@ -105,7 +108,7 @@ camera.setViewOffset(
 //Define Nuclear Star cluster size and integration schemes
 const bhRadius   = 2;
 const iscoRadius = 0;
-const numStars = 500;
+const numStars = 800;
 const starSize = 0.5
 
 const simSize = 500
@@ -115,7 +118,7 @@ const dt = 0.01
 //Add Black Hole
 const bhGeometry = new THREE.SphereGeometry(bhRadius, 64, 64);
 const bhMaterial = new THREE.MeshStandardMaterial({
-    color: 0x00000,
+    color: new THREE.Color(bhColor),
     opacity: 0.9,
     transparent: false
 });
@@ -126,24 +129,22 @@ scene.add(bhMesh);
 //Add ISCO region
 const iscoGeometry = new THREE.SphereGeometry(iscoRadius, 64, 64);
 const iscoMaterial = new THREE.MeshStandardMaterial({
-    color: 0x00000,
-    opacity: 0.2,
-    transparent: true
+    color: 0x41006f,
+    // opacity: 1.0,
+    // transparent: true
 });
 
 const iscoMesh = new THREE.Mesh(iscoGeometry, iscoMaterial);
-bhMesh.add(iscoMesh);
+// bhMesh.add(iscoMesh);
 
+//Gravitational constant
+const mu = avgVelocity**2 * (simSize / 10);
+const minPeriapsis = 5*bhRadius
 
 //Add stars 
 const stars = [];
 
 for (let i = 0; i < numStars; i++) {
-
-    //Add star geometry
-    const starGeometry = new THREE.SphereGeometry(starSize, 16, 16);
-    const starMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
-    const star = new THREE.Mesh(starGeometry, starMaterial);
 
     //Define initial positions
     const x = (Math.random() - 0.5) * simSize;
@@ -153,6 +154,41 @@ for (let i = 0; i < numStars; i++) {
     const vx = (Math.random()-0.5) * avgVelocity;
     const vy = (Math.random()-0.5) * avgVelocity;
     const vz = (Math.random()-0.5) * avgVelocity;
+
+    // Orbital energy
+    const r_mag = Math.sqrt(x**2 + y**2 + z**2);
+    const v_sq  = vx**2 + vy**2 + vz**2;
+
+    const T   = 0.5 * v_sq;
+    const V   = -mu / r_mag;          // fixed: potential is -mu/r not -mu/r^2
+    const E   = T + V;
+
+    // Reject unbound orbits (E >= 0 means the star escapes to infinity)
+    if (E >= 0) continue;
+
+    // Semi-major axis from vis-viva: E = -mu / 2a
+    const sma = -mu / (2 * E);
+
+    // Specific angular momentum vector h = r × v
+    const hx = y * vz - z * vy;
+    const hy = z * vx - x * vz;
+    const hz = x * vy - y * vx;
+    const h_mag = Math.sqrt(hx**2 + hy**2 + hz**2);
+
+    // Semi-latus rectum and eccentricity
+    const p = h_mag**2 / mu;
+    const e = Math.sqrt(1 - p / sma);   // fixed: e = sqrt(1 - p/a)
+
+    // Periapsis distance
+    const peri = sma * (1 - e);
+
+    // Loss cone condition — reject if periapsis is too small
+    if (peri < minPeriapsis) continue;
+
+    //Add star geometry
+    const starGeometry = new THREE.SphereGeometry(starSize, 16, 16);
+    const starMaterial = new THREE.MeshBasicMaterial({ color: new THREE.Color(bhColor) });
+    const star = new THREE.Mesh(starGeometry, starMaterial);
 
     //Runge Kutta / Euler positions
     star.RKpos = { x, y, z };
@@ -165,7 +201,7 @@ for (let i = 0; i < numStars; i++) {
 }
 
 //Add light
-const hemiLight = new THREE.HemisphereLight(0x0099ff, 0xaa5500)
+const hemiLight = new THREE.HemisphereLight(0x8329c4, 0x33ad65)
 scene.add(hemiLight)
 
 //Animate
@@ -195,8 +231,6 @@ function animate(t=0){
         star.position.z = star.RKpos.z;
     };
 
-    //blackHole.scale.setScalar( 0.2+0.05*Math.cos(t*0.001));
-    //blackHole.rotation.x = t*0.001;
     renderer.render(scene, camera);
     controls.update()
 

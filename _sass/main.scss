@@ -6,20 +6,18 @@
 // 2. Base stuff
 @use 'base/base';
 @use 'base/fonts';
-//@use 'base/helpers';
-//@use 'base/typography';
 
 // 3. Layout-related sections
 //@use 'layout/footer';
 @use 'layout/header';
 
 // 4. Components
-@use 'components/hamburguer_menu';
+@use 'components/circle_menu';
 
 // 5. Pages
-@use 'pages/about';
 @use 'pages/home';
-@use 'pages/research'
+@use 'pages/research';
+@use 'pages/about';
 
 // 6. Themes
 //@use 'themes/default';

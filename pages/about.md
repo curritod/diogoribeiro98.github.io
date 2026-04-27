@@ -1,15 +1,7 @@
 ---
 layout: about
-title: About
+title: 
 ---
-<!-- 
-**Hi there!** My name is Diogo and I'm a Ph.D. student at the <a href="https://www.mpe.mpg.de/main">**Max Plank Institute for Extraterrestrial Physics**</a> in the Galactic Center group led by Prof. Reinhard Genzel and Prof. Frank Eisenhauer. 
-
-I work at the interface of theory and experiment using the Galactic Center as a laboratory to test our understanding of gravity and the environment surrounding supermassive black holes.
-
-Originally from Lisbon, Portugal, where I completed my Master's degree in Engineering Physics at Instituto Superior Tecnico of University of Lisbon, I moved to Munich to pursue my PhD in Astrophysics. With a classical formation in theoretical Physics and Engeneering, my work oscillates between observation and modeling. I am a member of the GRAVITY and GRAVITY+ Collaborations, with contributions both on the instrumentation developments of the GRAVITY instrument as well as on the theoretical aspects related to the Collaboration science cases.  -->
-
-
 
 Hi there! I’m Diogo, a Ph.D. student at the  <a href="https://www.mpe.mpg.de/main">Max Plank Institute for Extraterrestrial Physics</a> (MPE), where I work in the Galactic Center group led by Prof. Reinhard Genzel and Prof. Frank Eisenhauer.
 

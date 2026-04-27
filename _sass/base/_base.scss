@@ -1,133 +1,31 @@
 @use '../abstracts';
 
-/*
- * Remove scroll bars from website
- */
+// Reset / box model
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+// Remove scrollbars (keep if you really want it globally)
 * {
-  scrollbar-width: none; // Firefox
+  scrollbar-width: none;
 }
-
 ::-webkit-scrollbar {
-  display: none; // Chrome, Safari, Edge
+  display: none;
 }
 
-
-/*
- * Basic body settings
- */
-
-html, 
+// Root defaults
+html,
 body {
-  -ms-overflow-style: none; // IE
-  overflow: auto;
   margin: 0;
   padding: 0;
 }
 
+// Body = only global typography + colors
 body {
-  height: 100vh;
-  min-height: 300px;
   font-family: abstracts.$font-primary;
   color: abstracts.$textcolor-light;
   background-color: abstracts.$background-light;
-  overflow-y: auto;
-  overflow-x: hidden;
-  justify-content: center;
+  line-height: 1.6;
 }
-
-
-/* Setup webpage working space adn make it responsive to smaller screens*/
-.container {
-    width: 80vw;      
-    height: 100vh;      
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    // background-color: rgba(0, 0, 0, 0);
-    background-color: rgba(0, 0, 0, 0);
-    font-size: 20px;
-    line-height: 1.6;
-}
-
-.container .content {
-    width: 50vw; 
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 20px;
-    line-height: 1.9; 
-    padding-bottom: 200px;
-    
-}
-
-.container .content img
-{
-    max-width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-
-a:link {
-  color: abstracts.$color-mpe;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
-  color: abstracts.$color-mpe;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: abstracts.$color-mpe-hover;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:active {
-  color: abstracts.$color-mpe-hover;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-/*
- * Setup fader
- */
-
- #fader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 998;
-  pointer-events: none;
-  background: white;
-  animation-duration: 300ms;
-  animation-timing-function: ease-in-out;
-}
-
-@keyframes fade-out {
-    from { opacity: 1 }
-      to { opacity: 0 }
-}
-
-@keyframes fade-in {
-    from { opacity: 0 }
-      to { opacity: 1 }
-}
-
-#fader.fade-out {
-    opacity: 0;
-    animation-name: fade-out;
-}
-
-#fader.fade-in {
-    opacity: 1;
-    animation-name: fade-in;
-}
-

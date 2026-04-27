@@ -1,62 +1,150 @@
+@use '../abstracts';
 
-.about {
-
-    display: flex;
-    flex-direction: row; /* Arrange items horizontally */
-    align-items: center;
-    max-width: 1210px;
-    background-color: #ffffff00;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
+.about_page {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
 }
 
-.about h1{
-    align-self: flex-start;
-    margin-bottom: 0px;
+.about_page_content {
+  width: 30cm;
+  max-width: 90vw;
+  line-height: 1.9;
+  font-size: 18px;
 }
 
-.about p{
+// Text and Image
+.about_hero {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 60px;
+  margin-top: 40px;
+}
+
+.about-hero_text {
+  flex: 1;
+  min-width: 0; // prevents flex blowout
+  text-align: justify;
+
+  h1 {
+    margin-bottom: 4px;
+  }
+
+  p {
     margin-top: 4px;
     margin-bottom: 10px;
+    font-size: 18px;
+  }
 }
 
-/* Style for the text section */
-.text-section {
-    flex: 1; /* Allow text section to take available space */
-    margin-right: 100px; /* Space between text and image */
-    text-align:justify;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
+.about-hero_image {
+  align-items: center;
 
-/* Style for the image */
-.image-section img {
-    max-width: 100%; /* Ensure image doesn't exceed container's width */
+  img {
+    width: 400px;
+    max-width: 100%;
     height: auto;
-    border-radius: 8px; /* Optional: for rounded corners */
-    // padding-left: 20px;
-    // padding-right: 20px;
-    justify-content: center;
+    border-radius: 2px;
+    box-shadow: 2px 2px 20px 10px rgb(0 0 0 / 20%);
+  }
 }
 
-  /* Responsive design: stack items vertically when screen width is 768px or less */
-  @media (max-width:  1300px) {
-    .about {    
-        margin-top: 10px;
-        flex-direction: column; /* Stack items vertically */
-        align-items: center; /* Align items to the left */
-    }
+// Selected Papers
+.about-papers {
+  border-top: 1px solid $rule-color;
+  padding-top: 20px;
+  margin-bottom: 80px;
+}
 
-    .image-section img{
-        margin-top: 20px;
-        margin-bottom: 35px;
-    }
+.paper-item {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+}
 
-    .text-section {
-        margin-right: 0; /* Remove margin when stacked */
-        margin-bottom: 20px; /* Add space below text section */
-        justify-content: center;
-    }
+.paper-link {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0rem;
+  align-items: start;
+  padding: 0.5rem 0.5rem;
+ 
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: #000000;
+    transform: translateX(10px);
+  }
+}
+
+.paper-year {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 0.15rem;
+}
+
+.paper-title {
+  font-weight: 550;
+  font-size: 18px;
+  margin-bottom: 0.2rem;
+}
+
+.paper-authors {
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 0.1rem;
+}
+
+.paper-venue {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+// Make responsive
+@media (max-width: 1300px) {
+  .about_hero {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .about_hero_image img {
+    width: 300px;
+  }
+
+  .about_hero_text {
+    text-align: left;
+  }
+}
+
+.about_page a:link {
+  color: abstracts.$color-links;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.about_page a:visited {
+  color: abstracts.$color-links;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.about_page a:hover {
+  color: abstracts.$color-links-hover;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.about_page a:active {
+  color: abstracts.$color-links-hover;
+  background-color: transparent;
+  text-decoration: none;
 }
