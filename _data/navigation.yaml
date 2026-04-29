@@ -1,5 +1,5 @@
 - name: About
   link: /pages/about.html
 
-- name: Research
-  link: /pages/research.html
+#- name: Research
+#  link: /pages/research.html
