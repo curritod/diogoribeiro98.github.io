@@ -7,8 +7,8 @@
 }
 
 .about_page_content {
-  width: 30cm;
-  max-width: 90vw;
+  width: abstracts.$content-width;
+  max-width: abstracts.$content-max-width;
   line-height: 1.9;
   font-size: 18px;
 }

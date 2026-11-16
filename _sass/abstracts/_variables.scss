@@ -9,6 +9,10 @@ $color-hover: #000000;
 $color-links: #000000;
 $color-links-hover: #585858;
 
+// Layout
+$content-width: 30cm;       // max width of header and page content
+$content-max-width: 90vw;   // keeps a side gutter on small screens
+
 // Typography
 $font-primary: 'Sen', sans-serif;
 $font-heading: 'Kulim Park', sans-serif;

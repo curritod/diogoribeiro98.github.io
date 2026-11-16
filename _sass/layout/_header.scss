@@ -12,7 +12,8 @@
   align-items: center;
   height: 100px;
 
-  max-width: 60vw;
+  width: abstracts.$content-width;
+  max-width: abstracts.$content-max-width;
   margin: 0 auto;
 }
 
