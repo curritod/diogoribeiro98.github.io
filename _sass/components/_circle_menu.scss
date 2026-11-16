@@ -1,3 +1,5 @@
+@use '../abstracts';
+
 .hamburger {
     display: none;
     font-size: 2em;
@@ -83,7 +85,7 @@
    RESPONSIVE BEHAVIOR
    ========================================================= */
 
-@media (max-width: 1345px) {
+@media (max-width: abstracts.$bp-nav-collapse) {
 
     /* Hide desktop navigation */
     .navbar-links {

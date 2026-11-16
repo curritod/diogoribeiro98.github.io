@@ -12,6 +12,7 @@ $color-links-hover: #585858;
 // Layout
 $content-width: 30cm;       // max width of header and page content
 $content-max-width: 90vw;   // keeps a side gutter on small screens
+$bp-nav-collapse: 700px;    // below this, the navbar collapses into the hamburger menu
 
 // Typography
 $font-primary: 'Sen', sans-serif;
