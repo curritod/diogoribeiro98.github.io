@@ -4,22 +4,28 @@
 Welcome page
 *************************/
 
+// The black hole's on-screen size and position scale with the viewport
+// height (fixed vertical fov in orbiting_stars.js): its centre sits at 40%
+// of the height (setViewOffset shifts it up by 10%) and its radius is
+// tan(atan(2/20)) / tan(30deg) * 50% = 8.7% of the height, so its bottom
+// edge is at ~48.7%. The card is positioned against the same viewport so
+// the name always starts just below the black hole, at any window size.
+// If the camera fov, distance, offset or black hole radius change,
+// update $bh-bottom.
+$bh-bottom: 48.7%;
+
 .welcome_card {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: calc(#{$bh-bottom} + clamp(16px, 4vh, 48px));
+
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
-    flex-direction: column;  /* Optional: arrange items vertically */
+    flex-direction: column;
+    align-items: center;
 
-
-    margin-top: 1cm;
-    padding: 20px;             /* Padding inside the container */
-    background-color: #00000000; /* Background color for the centered div */
-    color: var(--textcolor-light);
-    height: 60vh;
-    max-width: 100%;           /* Ensure it doesn't overflow horizontally */
-    max-height: 100%;          /* Ensure it doesn't overflow vertically */
-    box-sizing: border-box;    /* Include padding in the element's width/height */
-    text-align: center;        /* Center text content */
+    padding: 0 20px;
+    text-align: center;
 }
 
 .welcome_card {
