@@ -11,7 +11,7 @@
       <!-- Welcome text and image -->
       <div class="about_hero">
         <div class="about-hero_text">
-          <h1>{{ page.title }}</h1>
+          {% if page.title %}<h1>{{ page.title }}</h1>{% endif %}
           {{ content }}
         </div>
         <div class="about-hero_image">
