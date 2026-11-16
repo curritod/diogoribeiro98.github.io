@@ -63,15 +63,7 @@ $bh-bottom: 48.7%;
 .social-icon {
     transition: 0.2s;
     text-decoration: none;
-    margin-right: 10px;
-    margin-left: 10px;
-}
-
-@media (min-width: 768px) {
-    .social-icon {
-        margin-right: 0px;
-        margin-left: 20px;
-    }
+    margin: 0 10px;
 }
 .social-icon:hover {
     filter: drop-shadow(0 0 0.75rem $color-hover);
